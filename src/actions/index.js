@@ -5,3 +5,14 @@ export const showProduct = (product) => {
         product : product
     }
 }
+export const addToCart = (id) => {
+    return {
+        type : types.ADD_TO_CART,
+        id : id
+    }
+}
+export const showCart = () => {
+    return {
+        type : types.SHOW_CART
+    }
+}

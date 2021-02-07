@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './components/Header';
 import Message from './components/Message';
-import ProductList from './components/ProductList';
+import ProductListContainer from './containers/ProductListContainer';
 import CartList from './components/CartList';
 import Footer from './components/Footer';
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <Header/>
       <main id="mainContainer">
         <div class="container">
-          <ProductList/>
+          <ProductListContainer/>
           <Message/>
           <CartList/>
           </div>

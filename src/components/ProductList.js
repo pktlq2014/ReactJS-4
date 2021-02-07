@@ -1,6 +1,4 @@
 import ProductItem from './ProductItem';
-import { connect } from 'react-redux';
-import * as actions from './../actions/index';
 import React, { Component } from 'react';
 class ProductList extends Component {
   render() {
@@ -26,19 +24,7 @@ class ProductList extends Component {
           {products}
         </div>
       </section>
-
-
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    product: state.product
-  }
-}
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default ProductList;

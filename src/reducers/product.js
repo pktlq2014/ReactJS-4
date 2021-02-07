@@ -84,6 +84,16 @@ var initialState = [
 ]
 var product = (state = initialState, action) => {
     switch(action.type) {
+        case types.ADD_TO_CART: {
+            console.log(action);
+            state.forEach((values, index) => {
+                if(values.id === action.id) {
+                    console.log(values);
+                    localStorage.setItem("productCart", JSON.stringify(values));
+                }
+            });
+            return state;
+        }
         // khi state nhiều sp (nhiều obj trong array thì nên ...
         // để sau khi thay đổi 1 sp thì lấy ra những thằng còn lại)
         default : return [...state];
