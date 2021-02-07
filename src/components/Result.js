@@ -13,8 +13,8 @@ function CartList() {
         </h4>
       </td>
       <td colSpan="3">
-        <button type="button" class="btn btn-primary waves-effect waves-light">Complete purchase
-                                            <i class="fa fa-angle-right right"></i>
+        <button type="button" className="btn btn-primary waves-effect waves-light">Complete purchase
+                                            <i className="fa fa-angle-right right"></i>
         </button>
       </td>
     </tr>

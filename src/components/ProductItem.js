@@ -1,52 +1,53 @@
-function ProductItem() {
-  return (
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-      <div class="card text-center card-cascade narrower">
-        <div class="view overlay hm-white-slight z-depth-1">
-          <img src="https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72"
-            class="img-fluid" alt="" />
-          <a>
-            <div class="mask waves-light waves-effect waves-light"></div>
-          </a>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">
-            <strong>
-              <a>Iphone 6 Plus</a>
-            </strong>
-          </h4>
-          <ul class="rating">
-            <li>
-              <i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i>
-            </li>
-          </ul>
-          <p class="card-text">
-            Sản phẩm do apply sản xuất
-                                    </p>
-          <div class="card-footer">
-            <span class="left">15$</span>
-            <span class="right">
-              <a class="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
-                <i class="fa fa-shopping-cart"></i>
-              </a>
-            </span>
+import React, { Component } from 'react';
+class ProductItem extends Component {
+  showRating = (rating) => {
+    var result = [];
+    for(var i = 0; i < rating; i++) {
+      result.push(<i className="fa fa-star"></i>);
+    }
+    for(var j = 0; j < 5-rating; j++) {
+      result.push( <i className="fa fa-star-o"></i>);
+    }
+    console.log(result);
+    return result;
+  }
+  render() {
+    return (
+      <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div className="card text-center card-cascade narrower">
+          <div className="view overlay hm-white-slight z-depth-1">
+            <img src={this.props.image} className="img-fluid" alt="" />
+            <a>
+              <div className="mask waves-light waves-effect waves-light"></div>
+            </a>
+          </div>
+          <div className="card-body">
+            <h4 className="card-title">
+              <strong>
+                <a>{this.props.name}</a>
+              </strong>
+            </h4>
+            <ul className="rating">
+              <li>
+                {this.showRating(this.props.rating)}
+              </li>
+            </ul>
+            <p className="card-text">
+              {this.props.description}
+            </p>
+            <div className="card-footer">
+              <span className="left">{this.props.price}$</span>
+              <span className="right">
+                <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
+                  <i className="fa fa-shopping-cart"></i>
+                </a>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </div >
-  );
+      </div >
+    );
+  }
 }
 
 export default ProductItem;
