@@ -35,3 +35,19 @@ export const deleteCart = (id) => {
         id : id
     }
 }
+export const increaseCart = (data, id, index) => {
+    return {
+        type : types.INCREASE_CART,
+        data : data,
+        id : id,
+        index : index
+    }
+}
+export const decreaseCart = (data, id, index) => {
+    return {
+        type : types.DECREASE_CART,
+        data : data,
+        id : id,
+        index : index
+    }
+}

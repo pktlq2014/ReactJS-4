@@ -35,6 +35,31 @@ var cart = (state = initialState, action) => {
             localStorage.setItem("productCart", JSON.stringify(state));
             return [...state];
         }
+        case types.INCREASE_CART: {
+            state.forEach((values, index) => {
+                if(values.id === action.id) {
+                    if(values.quantity < 10) {
+                        values.quantity += action.data;
+                    }
+                }
+            });
+            localStorage.setItem("productCart", JSON.stringify(state));
+            return [...state];
+        }
+        case types.DECREASE_CART: {
+            state.forEach((values, index) => {
+                if(values.id === action.id) {
+                    if(values.quantity > 1) {
+                        values.quantity += action.data;
+                    }
+                    else {
+                        state.splice(action.index, 1);
+                    }
+                }
+            });
+            localStorage.setItem("productCart", JSON.stringify(state));
+            return [...state];
+        }
         // khi state nhiều sp (nhiều obj trong array thì nên ...
         // để sau khi thay đổi 1 sp thì lấy ra những thằng còn lại)
         default: return [...state];

@@ -20,6 +20,8 @@ class CartListContainer extends Component {
                     price={values.price}
                     quantity={values.quantity}
                     image={values.image}
+                    onDecreaseCart={this.props.onDecreaseCart}
+                    onIncreaseCart={this.props.onIncreaseCart}
                     onDeleteCart={this.props.onDeleteCart}
                 />
             });
@@ -67,6 +69,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onChangeMessage : (message) => {
             dispatch(actions.changeMessage(message));
+        },
+        onIncreaseCart : (data, id, index) => {
+            dispatch(actions.increaseCart(data, id, index))
+        },
+        onDecreaseCart : (data, id, index) => {
+            dispatch(actions.decreaseCart(data, id, index))
         }
     }
 }

@@ -9,6 +9,14 @@ class CartItem extends Component {
     this.props.onDeleteCart(id);
     this.props.onChangeMessage(messages.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
   }
+  onDecreaseCart = (data, id, index) => {
+    this.props.onDecreaseCart(data, id, index);
+    this.props.onChangeMessage(messages.MSG_UPDATE_CART_SUCCESS);
+  }
+  onIncreaseCart = (data, id, index) => {
+    this.props.onIncreaseCart(data, id, index);
+    this.props.onChangeMessage(messages.MSG_UPDATE_CART_SUCCESS);
+  }
   render() {
     return (
       <tr>
@@ -24,10 +32,10 @@ class CartItem extends Component {
         <td className="center-on-small-only">
           <span className="qty">{this.props.quantity}</span>
           <div className="btn-group radio-group" data-toggle="buttons">
-            <label className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
+            <label onClick={() => this.onDecreaseCart(-1, this.props.id, this.props.index)} className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
               <a>—</a>
             </label>
-            <label className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
+            <label onClick={() => this.onIncreaseCart(1, this.props.id, this.props.index)} className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
               <a>+</a>
             </label>
           </div>
