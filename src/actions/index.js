@@ -5,10 +5,11 @@ export const showProduct = (product) => {
         product : product
     }
 }
-export const addToCart = (id) => {
+export const addToCart = (product, quantity) => {
     return {
         type : types.ADD_TO_CART,
-        id : id
+        product : product,
+        quantity : quantity
     }
 }
 export const showCart = () => {

@@ -1,18 +1,7 @@
-import CartItem from './CartItem';
-import Result from './Result';
-import {connect} from 'react-redux';
 import React, { Component } from 'react';
 class CartList extends Component {
   render() {
-    var data = this.props.cart;
-    console.log(data);
-    var productCart = data.map((values, index) => {
-      return <CartItem
-        name={values.name}
-        price={values.price}
-        image={values.image}
-      />
-    }); 
+    var {children} = this.props;
     return (
       <section className="section">
         <div className="table-responsive">
@@ -28,8 +17,7 @@ class CartList extends Component {
               </tr>
             </thead>
             <tbody>
-              {productCart}
-              <Result />
+              {children}
             </tbody>
           </table>
         </div>
@@ -37,9 +25,4 @@ class CartList extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    cart : state.cart
-  }
-}
-export default connect(mapStateToProps, null)(CartList);
+export default CartList;
