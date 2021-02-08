@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import Message from './components/Message';
+import MessageContainer from './containers/MessageContainer';
 import ProductListContainer from './containers/ProductListContainer';
 import CartListContainer from './containers/CartListContainer';
 import Footer from './components/Footer';
@@ -11,7 +11,7 @@ function App() {
       <main id="mainContainer">
         <div class="container">
           <ProductListContainer/>
-          <Message/>
+          <MessageContainer/>
           <CartListContainer/>
           </div>
       </main>

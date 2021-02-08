@@ -1,35 +1,43 @@
 import * as types from '../constants/ActionType';
 var data = JSON.parse(localStorage.getItem("productCart"));
-var initialState = [
-    {
-        id: 1,
-        name: 'Iphone 1',
-        image: 'https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72',
-        description: 'Sản phẩm do Apple sản xuất',
-        price: 500,
-        inventory: 10,
-        rating: 5,
-        quantity: 3
-    },
-    {
-        id: 2,
-        name: 'Iphone 2',
-        image: 'https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72',
-        description: 'Sản phẩm do Apple sản xuất',
-        price: 500,
-        inventory: 10,
-        rating: 3,
-        quantity: 5
-    }
-]
+var initialState = data ? data : [];
 var cart = (state = initialState, action) => {
+    var { product } = action;
+    var index = -1;
     switch (action.type) {
         case types.ADD_TO_CART: {
+            console.log(action.product.id);
+            //console.log(state);
+            index = findCart(state, product);
+            // index === -1 vừa là lần đầu tiên (giỏ hàng đang rỗng)
+            // vừa là sp mới khác với các sp đã tồn tại trong giỏ hàng
+            if (index === -1) {
+                product.quantity = action.quantity;
+                console.log(product);
+                state.push(product);
+                console.log(state);
+            }
+            else {
+                state[index].quantity += 1;
+            }
+            localStorage.setItem("productCart", JSON.stringify(state));
             return [...state];
         }
         // khi state nhiều sp (nhiều obj trong array thì nên ...
         // để sau khi thay đổi 1 sp thì lấy ra những thằng còn lại)
         default: return [...state];
     }
+}
+var findCart = (state, product) => {
+    var index = -1;
+    if (state.length > 0) {
+        for (var i = 0; i < state.length; i++) {
+            if (state[i].id === product.id) {
+                index = i;
+                break;
+            }
+        }
+    }
+    return index;
 }
 export default cart;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import * as actions from './../actions/index';
+import * as messages from './../constants/Message';
 class ProductItem extends Component {
   showRating = (rating) => {
     var result = [];
@@ -13,8 +12,9 @@ class ProductItem extends Component {
     console.log(result);
     return result;
   }
-  onAddToCart = () => {
-    this.props.onAddToCart(this.props.id);
+  onAddToCart = (product, quantity) => {
+    this.props.onAddToCart(product, quantity);
+    this.props.onChangeMessage(messages.MSG_ADD_TO_CART_SUCCESS);
   }
   render() {
     return (
@@ -42,7 +42,7 @@ class ProductItem extends Component {
             </p>
             <div className="card-footer">
               <span className="left">{this.props.price}$</span>
-              <span className="right" onClick={this.onAddToCart}>
+              <span className="right" onClick={() => this.onAddToCart(this.props.values, 1)}>
                 <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
                   <i className="fa fa-shopping-cart"></i>
                 </a>
@@ -54,16 +54,4 @@ class ProductItem extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    onAddToCart : (id) => {
-      dispatch(actions.addToCart(id));
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);
+export default ProductItem;
