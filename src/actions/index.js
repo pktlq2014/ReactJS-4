@@ -29,3 +29,9 @@ export const changeMessage = (message) => {
         message : message
     }
 } 
+export const deleteCart = (id) => {
+    return {
+        type : types.DELETE_CART,
+        id : id
+    }
+}

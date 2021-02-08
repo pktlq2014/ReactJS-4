@@ -23,6 +23,18 @@ var cart = (state = initialState, action) => {
             localStorage.setItem("productCart", JSON.stringify(state));
             return [...state];
         }
+        case types.DELETE_CART: {
+            // console.log(action);
+            // state.forEach((values, index) => {
+            //     if(values.id === action.id) {
+            //         state.splice(action.id, 1);
+            //     }
+            // });
+            console.log(action);
+            state.splice(action.id, 1);
+            localStorage.setItem("productCart", JSON.stringify(state));
+            return [...state];
+        }
         // khi state nhiều sp (nhiều obj trong array thì nên ...
         // để sau khi thay đổi 1 sp thì lấy ra những thằng còn lại)
         default: return [...state];

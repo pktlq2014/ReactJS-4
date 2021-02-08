@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import * as messages from './../constants/Message';
 class CartItem extends Component {
   total = (price, quantity) => {
     return price * quantity;
+  }
+  deleteCart = () => {
+    var id = this.props.index;
+    this.props.onDeleteCart(id);
+    this.props.onChangeMessage(messages.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
   }
   render() {
     return (
@@ -28,7 +34,9 @@ class CartItem extends Component {
         </td>
         <td>{this.total(this.props.price, this.props.quantity)}$</td>
         <td>
-          <button type="button" className="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove item">
+          <button type="button"
+          onClick={this.deleteCart}
+          className="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove item">
             X
           </button>
         </td>

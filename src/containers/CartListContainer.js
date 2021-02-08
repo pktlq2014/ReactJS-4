@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import CartList from '../components/CartList';
 import CartItem from '../components/CartItem';
+import * as actions from './../actions/index';
 import Result from './../components/Result';
 import React, { Component } from 'react';
 import * as messages from './../constants/Message';
@@ -12,10 +13,14 @@ class CartListContainer extends Component {
             result = cart.map((values, index) => {
                 return <CartItem
                     key={values.id}
+                    id={values.id}
+                    index={index}
                     name={values.name}
+                    onChangeMessage={this.props.onChangeMessage}
                     price={values.price}
                     quantity={values.quantity}
                     image={values.image}
+                    onDeleteCart={this.props.onDeleteCart}
                 />
             });
         }
@@ -57,7 +62,12 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch, props) => {
     return {
-
+        onDeleteCart : (id) => {
+            dispatch(actions.deleteCart(id));
+        },
+        onChangeMessage : (message) => {
+            dispatch(actions.changeMessage(message));
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartListContainer);
