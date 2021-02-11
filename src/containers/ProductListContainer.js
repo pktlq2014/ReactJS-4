@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import * as actions from './../actions/index';
 //import PropTypes from 'prop-types';
 import ProductItem from '../components/ProductItem';
+import API from './../utils/API';
 class ProductListContainer extends Component {
     sendProduct = (product) => {
         var result = null;
@@ -27,8 +28,14 @@ class ProductListContainer extends Component {
         }
         return result;
     }
+    componentDidMount() {
+        console.log("didmount");
+        this.props.onDataServerRequest();
+    }
     render() {
         var { product } = this.props;
+        console.log("render");
+        //var { product } = this.state;
         console.log(product);
         return (
             <ProductList>
@@ -53,11 +60,14 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddToCart : (product, quantity) => {
+        onAddToCart: (product, quantity) => {
             dispatch(actions.addToCart(product, quantity));
         },
-        onChangeMessage : (message) => {
+        onChangeMessage: (message) => {
             dispatch(actions.changeMessage(message));
+        },
+        onDataServerRequest : () => {
+            dispatch(actions.dataServerRequest());
         }
     }
 }
